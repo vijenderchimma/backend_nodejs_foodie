@@ -1,0 +1,5 @@
+.env
+
+node_modules
+
+//git ignore is used to avoid the files that are not pushing to git hub
