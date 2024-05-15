@@ -12,7 +12,7 @@ const productRoutes = require('./routes/productRoutes')
 
 const path = require('path') // it is an inbuilt module in nodejs
 
-const Port = 4000
+const PORT = process.env.PORT || 4000
 
 dotEnv.config() //to load environment variables from the .env file example api keys, passwords etc.
 
@@ -30,10 +30,11 @@ app.use('/products',productRoutes)
 
 app.use('/uploads',express.static('uploads'))
 
-app.listen(Port, () =>{
-    console.log(`Server Running at ${Port}`)
+app.listen(PORT, () =>{
+    console.log(`Server Running at ${PORT}`)
 })
 
-app.use("/home", (req,res)=>{
+app.use("/", (req,res)=>{
     res.send("<h1>Welcome to the Foodie's</h1>")
 })
+
