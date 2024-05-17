@@ -1,6 +1,7 @@
 const express = require("express")
 
 const dotEnv = require("dotenv")
+const cors = require('cors')
 
 const app = express() //it initializes the express application and creating the application instance
 const bodyParser= require('body-parser')
@@ -13,6 +14,8 @@ const productRoutes = require('./routes/productRoutes')
 const path = require('path') // it is an inbuilt module in nodejs
 
 const PORT = process.env.PORT || 4000
+
+app.use(cors())
 
 dotEnv.config() //to load environment variables from the .env file example api keys, passwords etc.
 
