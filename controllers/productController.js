@@ -1,6 +1,7 @@
 const multer = require('multer')
 const ProductModel = require('../models/Product')
 const Firm = require('../models/Firm')
+const path = require('path')
 
 
 const storage = multer.diskStorage({
@@ -24,6 +25,7 @@ const addProduct = async (req,res) =>{
         const {productName, price, category, bestseller, description} = req.body
 
         const image = req.file ? req.file.filename : undefined
+        console.log(image)
 
         const firmId = req.params.firmId
 
