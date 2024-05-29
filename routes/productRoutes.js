@@ -13,6 +13,6 @@ router.get('/uploads/:imageName',(req,res)=>{
     req.sendFile(path.join(__dirname, '..', 'uploads',imageName))
 })// here we have to mention the uploads folder and image name we have stored in the uploads folder
 
-router.delete('/:productId',deleteProductById)
+router.delete('/delete/:productId',deleteProductById)
 
 module.exports = router

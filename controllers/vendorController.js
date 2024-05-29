@@ -31,7 +31,7 @@ const vendorRegister = async (req,res)=>{
         console.log("registered")
     }
     catch(err){
-        return res.status(400).json({err: "Internal Server Err"})
+        res.status(400).json({err: "Internal Server Err"})
         console.log(err)
     }
 }
@@ -46,12 +46,14 @@ const vendorLogin = async(req,res)=>{
             return res.status(400).json("Invalid Vendor")
         }
 
-        const token = jwt.sign({vendorId: vendorEmail._id},secretKey,{expiresIn:"1h"})
+        const token = jwt.sign({vendorId: vendorEmail._id},secretKey,{expiresIn:"1d"})
         //here we generated jwtToken using vendorId
-        return res.status(200).json({success: "Vendor Login Successful",token})
+        const vendorId = vendorEmail._id
+
+        res.status(200).json({success: "Vendor Login Successful",token,vendorId})
         console.log(email)
     }catch(err){
-        return res.status(400).json("Internal server err")
+        res.status(400).json("Internal server err")
         console.log(err)
     }
 }
@@ -62,7 +64,7 @@ const getAllVendors = async (req,res)=>{
         //here we are showing firm records in vendor collection
         res.json({vendors})
     } catch (error) {
-        return res.status(400).json("Internal server err")
+        res.status(400).json("Internal server err")
         console.log(error)
     }
 
@@ -76,9 +78,11 @@ const getVendorById = async (req,res)=>{
         if(!vendor){
             return res.status(400).json({message:"vendor not found"})
         }
-        res.status(200).json({vendor})
+        const vendorFirmId = vendor.firm[0]._id
+        res.status(200).json({vendor,vendorId,vendorFirmId})
+        console.log(vendor,vendorFirmId)
     } catch (error) {
-        return res.status(400).json("Internal server err")
+        res.status(400).json("Internal server err")
         console.log(error)
     }
 }
