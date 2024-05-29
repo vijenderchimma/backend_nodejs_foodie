@@ -42,9 +42,11 @@ const vendorLogin = async(req,res)=>{
 
     try {
         const vendorEmail = await Vendor.findOne({email})
+        console.log(vendorEmail)
         if(!vendorEmail|| !(await bcrypt.compare(password,vendorEmail.password))){
             return res.status(400).json("Invalid Vendor")
         }
+        
 
         const token = jwt.sign({vendorId: vendorEmail._id},secretKey,{expiresIn:"1d"})
         //here we generated jwtToken using vendorId
