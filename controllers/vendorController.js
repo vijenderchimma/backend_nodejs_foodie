@@ -54,7 +54,7 @@ const vendorLogin = async(req,res)=>{
         console.log(email)
     }catch(err){
         res.status(400).json("Internal server err")
-        console.log(err)
+        console.log(err.message)
     }
 }
 
