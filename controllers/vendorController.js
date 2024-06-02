@@ -48,7 +48,7 @@ const vendorLogin = async(req,res)=>{
         }
         
 
-        const token = jwt.sign({vendorId: vendorEmail._id},secretKey,{expiresIn:"1d"})
+        const token = jwt.sign({vendorId: vendorEmail._id},secretKey,{expiresIn:"1h"})
         //here we generated jwtToken using vendorId
         const vendorId = vendorEmail._id
 
